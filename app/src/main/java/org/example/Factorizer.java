@@ -4,39 +4,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Factorizer {
-  public ArrayList<Integer> getPrimeFactors(int number) {
-    // Implement your code here!
-    if (number < 2){
-      throw new IllegalArgumentException("The number must be 2 or larger to have prime factors");
+
+    
+    public List<Integer> getPrimeFactors(int number) {
+      // Implement your code here!
+        if (number < 2) {
+            throw new IllegalArgumentException("Number must be 2 or larger to have prime factors.");
+        }
+
+        List<Integer> factors = new ArrayList<>();
+        int n = number;
+
+        // Factor out even
+        while (n % 2 == 0) {
+            factors.add(2);
+            n /= 2;
+        }
+
+        // Factor out odd, begin with 3
+        for (int i = 3; i <= Math.sqrt(n); i += 2) {
+            while (n % i == 0) {
+                factors.add(i);
+                n /= i;
+            }
+        }
+
+        return factors;
     }
-
-    List<Integer> factors = new ArrayList<>();
-    //n start with even
-    int n = number;
-
-    //Even numbers 2
-
-    while(n % 2 == 0){
-      factors.add(2);
-      n /= 2;
-    }
-
-    //Odd numbers 5
-
-    for(int e = 5; e <= Math.sqrt(e); e += 2){
-      while(n % e == 0){
-        factors.add(e);
-        n /= e;
-      }
-    }
-
-    //n - even number is prime if > 2
-
-    if(n > 2){
-      factors.add(n);
-    }
-
-    return new ArrayList<>();
-  }
 }
 
